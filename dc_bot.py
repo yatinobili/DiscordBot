@@ -1,0 +1,59 @@
+import discord
+import random
+from discord.ext import commands
+
+client = commands.Bot(command_prefix = '!')
+client.remove_command('help')
+
+
+sizel = [1,2,3,4,5,6,7,8]
+
+@client.event
+async def on_ready():
+    print('We have logged in as {0.user}'.format(client))
+
+@client.command()
+@commands.has_role('MOD')
+async def kick(ctx, member : discord.Member, *, reason = None):
+    await member.kick(reason = reason),await ctx.send(f'{member.mention} kicked for {reason}.')
+
+@client.command()
+@commands.has_role('MOD')
+async def ban(ctx, member : discord.Member, *, reason = None):
+    await member.ban(reason = reason), await ctx.send(f'{member.mention} has been banned for {reason}.')
+
+
+@client.command()
+@commands.has_role('MOD')
+async def unban(ctx, *, member):
+    banned_users = await ctx.guild.bans()
+    member_name, member_discriminator = member.split('#')
+
+
+    for ban_entry in banned_users:
+        user = ban_entry.user
+
+        if (user.name, user.discriminator) == (member_name, member_discriminator):
+            await ctx.guild.unban(user)
+            await ctx.send(f'Unbanned {user.mention}')
+            return
+
+@client.command()
+async def size(ctx, member : discord.Member):
+    await ctx.send(f"{member.mention}'s penis is {random.choice(sizel)} inches long.")
+
+@client.command()
+async def hello(ctx):
+    await ctx.send('shut the fuck up nigga')
+
+
+@client.command()
+async def help(ctx):
+    await ctx.send('`!help, !kick, !ban, !size, !hello`')
+
+@client.command()
+async def channel(ctx):
+    await ctx.create_text_channel(ctx)
+
+
+client.run('NjU3MjQyMzUwMzcxODY0NjA2.Xhkj_A.XuogWL0PbIq-OcTd2vG56fIA8Qw')
