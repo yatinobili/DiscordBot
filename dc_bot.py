@@ -1,5 +1,5 @@
 import discord
-import random
+import random as r
 from discord.ext import commands
 
 client = commands.Bot(command_prefix = '!')
@@ -7,15 +7,23 @@ client.remove_command('help')
 
 
 sizel = [1,2,3,4,5,6,7,8]
+lolhaha = ["gay", "not gay"]
+
 
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
 
 @client.command()
+async def gay(ctx):
+    await ctx.send(f"{ctx.author.mention} is {r.choice(lolhaha)}")
+
+
+@client.command()
 @commands.has_role('MOD')
 async def kick(ctx, member : discord.Member, *, reason = None):
     await member.kick(reason = reason),await ctx.send(f'{member.mention} kicked for {reason}.')
+
 
 @client.command()
 @commands.has_role('MOD')
@@ -38,9 +46,11 @@ async def unban(ctx, *, member):
             await ctx.send(f'Unbanned {user.mention}')
             return
 
+
 @client.command()
 async def size(ctx, member : discord.Member):
-    await ctx.send(f"{member.mention}'s penis is {random.choice(sizel)} inches long.")
+    await ctx.send(f"{member.mention}'s penis is {r.choice(sizel)} inches long.")
+
 
 @client.command()
 async def hello(ctx):
@@ -51,9 +61,10 @@ async def hello(ctx):
 async def help(ctx):
     await ctx.send('`!help, !kick, !ban, !size, !hello`')
 
+
 @client.command()
 async def channel(ctx):
     await ctx.create_text_channel(ctx)
 
 
-client.run('NjU3MjQyMzUwMzcxODY0NjA2.Xhkj_A.XuogWL0PbIq-OcTd2vG56fIA8Qw')
+client.run('NjU3MjQyMzUwMzcxODY0NjA2.Xh0pgg.OJSfqg5Nye9VHa_YusIvufEBJfs')
