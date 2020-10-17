@@ -67,4 +67,4 @@ async def channel(ctx):
     await ctx.create_text_channel(ctx)
 
 
-client.run('NjU3MjQyMzUwMzcxODY0NjA2.Xh0tpA.MWfFRy4k1LJexhxDDl7nRRkPOZc')
+client.run('TOKEN')
