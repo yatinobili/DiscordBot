@@ -7,7 +7,7 @@ client.remove_command('help')
 
 
 sizel = [1,2,3,4,5,6,7,8]
-lolhaha = ["gay", "not gay"]
+lolhaha = ["nice", "not nice"]
 
 
 @client.event
@@ -15,7 +15,7 @@ async def on_ready():
     print('We have logged in as {0.user}'.format(client))
 
 @client.command()
-async def gay(ctx):
+async def nice(ctx):
     await ctx.send(f"{ctx.author.mention} is {r.choice(lolhaha)}")
 
 
@@ -49,12 +49,12 @@ async def unban(ctx, *, member):
 
 @client.command()
 async def size(ctx, member : discord.Member):
-    await ctx.send(f"{member.mention}'s penis is {r.choice(sizel)} inches long.")
+    await ctx.send(f"{member.mention}'s brain is {r.choice(sizel)} inches long.")
 
 
 @client.command()
 async def hello(ctx):
-    await ctx.send('shut the fuck up nigga')
+    await ctx.send('Hello!')
 
 
 @client.command()
